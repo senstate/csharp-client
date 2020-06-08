@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senstate.WebSocket", "Senst
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senstate-ExampleApp", "Senstate-ExampleApp\Senstate-ExampleApp.csproj", "{5A78AEE3-3206-48DB-A09D-502CCA887BCD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senstate.CSharp-Client.Tests", "Senstate.CSharp-Client.Tests\Senstate.CSharp-Client.Tests.csproj", "{0C835DA8-5521-4D16-8F5C-00EF94DFFE82}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{5A78AEE3-3206-48DB-A09D-502CCA887BCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5A78AEE3-3206-48DB-A09D-502CCA887BCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5A78AEE3-3206-48DB-A09D-502CCA887BCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C835DA8-5521-4D16-8F5C-00EF94DFFE82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C835DA8-5521-4D16-8F5C-00EF94DFFE82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C835DA8-5521-4D16-8F5C-00EF94DFFE82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C835DA8-5521-4D16-8F5C-00EF94DFFE82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

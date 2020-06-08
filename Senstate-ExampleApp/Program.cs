@@ -1,5 +1,6 @@
 ﻿using Newtonsoft.Json;
 using Senstate.CSharp_Client;
+using Senstate.CSharp_Client.Tests;
 using System;
 using System.Linq;
 using System.Net.WebSockets;
@@ -77,16 +78,7 @@ namespace Senstate_ExampleApp
             Console.ReadKey();
         }
 
-        private class DummySerializer : ISenstateJson
-        {
-            public string ConvertToString(object data)
-            {
-                return JsonConvert.SerializeObject(data, new JsonSerializerSettings
-                {
-                    NullValueHandling = NullValueHandling.Ignore
-                });
-            }
-        }
+     
 
         private class DummyWebSocket : ISenstateWebSocket
         {
