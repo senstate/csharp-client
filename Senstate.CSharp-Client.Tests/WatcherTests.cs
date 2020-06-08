@@ -10,16 +10,7 @@ namespace Senstate.CSharp_Client.Tests
         [TestMethod]
         public void Sends_WatcherMeta_And_StringDataEvents()
         {
-            // TODO Extract ?
-            var webSocketMock = new Mock<ISenstateWebSocket>();
-
-            SenstateContext.AppId = "1234";
-            SenstateContext.AppName = "Some Name";
-
-            SenstateContext.SerializerInstance = new DummySerializer();
-            SenstateContext.WebSocketInstance = webSocketMock.Object;
-
-            SenstateContext.RegisterApp();
+            var webSocketMock = TestContext.RegisterApp();
 
             var watchMeta = new WatcherMeta
             {
@@ -49,16 +40,7 @@ namespace Senstate.CSharp_Client.Tests
         [TestMethod]
         public void Sends_WatcherMeta_And_NumberDataEvents()
         {
-            // TODO Extract ? #2
-            var webSocketMock = new Mock<ISenstateWebSocket>();
-
-            SenstateContext.AppId = "1234";
-            SenstateContext.AppName = "Some Name";
-
-            SenstateContext.SerializerInstance = new DummySerializer();
-            SenstateContext.WebSocketInstance = webSocketMock.Object;
-
-            SenstateContext.RegisterApp();
+            var webSocketMock = TestContext.RegisterApp();
 
             var watchMeta = new WatcherMeta
             {
@@ -89,16 +71,7 @@ namespace Senstate.CSharp_Client.Tests
         [TestMethod]
         public void Sends_WatcherMeta_And_JsonDataEvents()
         {
-            // TODO Extract ? #3
-            var webSocketMock = new Mock<ISenstateWebSocket>();
-
-            SenstateContext.AppId = "1234";
-            SenstateContext.AppName = "Some Name";
-
-            SenstateContext.SerializerInstance = new DummySerializer();
-            SenstateContext.WebSocketInstance = webSocketMock.Object;
-
-            SenstateContext.RegisterApp();
+            var webSocketMock = TestContext.RegisterApp();
 
             var watchMeta = new WatcherMeta
             {
