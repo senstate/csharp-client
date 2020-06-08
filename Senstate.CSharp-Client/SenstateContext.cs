@@ -23,22 +23,33 @@ namespace Senstate.CSharp_Client
         public static ISenstateJson SerializerInstance { get; set; }
         public static ISenstateWebSocket WebSocketInstance { get; set; }
 
-        public static void RegisterApp()
+        public static void RegisterApp(Uri targetEndpoint = null)
         {
-            WebSocketInstance.SendToSocket(CreateEventJson(SenstateEventConstants.AppApp, new {
+            if (targetEndpoint == null)
+            {
+                targetEndpoint = new Uri("ws://localhost:3333");
+            }
+
+            WebSocketInstance.CreateSocket(targetEndpoint);
+
+            SendEventData(SenstateEventConstants.AppApp, new
+            {
                 appId = AppId,
                 name = AppName
-            }));
+            });
+        }
+
+        public static void SendEventData(string eventType, object eventData)
+        {
+            WebSocketInstance.SendToSocket(CreateEventJson(eventType, eventData));
         }
 
         public static string CreateEventJson(string eventType, object eventData)
         {
-            var jsonedData = SerializerInstance.ConvertToString(eventData);
-
-            var objectToSend = new Dictionary<string, string>
+            var objectToSend = new Dictionary<string, object>
             {
                 {"event", eventType },
-        {"data", jsonedData}
+        {"data", eventData}
             };
 
             return SerializerInstance.ConvertToString(objectToSend);
@@ -52,6 +63,7 @@ namespace Senstate.CSharp_Client
 
     public interface ISenstateWebSocket
     {
+        void CreateSocket(Uri targetEndpoint);
         void SendToSocket(string jsonData);
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace Senstate.CSharp_Client
 {
@@ -39,14 +40,22 @@ namespace Senstate.CSharp_Client
         {
             RegisterThisWatcher();
 
-            // TODO Send the Values to 
+            SenstateContext.SendEventData(SenstateEventConstants.InputEvent, new { 
+               watchId = m_watchMeta.WatchId,
+               data
+            });
         }
 
         private void RegisterThisWatcher()
         {
             if (!m_registered)
             {
-                // TODO Do the WebSocket Stuff 
+                SenstateContext.SendEventData(SenstateEventConstants.AppWatcher, new { 
+                    watchId = m_watchMeta.WatchId,
+                    tag = m_watchMeta.Tag,
+                    group = m_watchMeta.Group,
+                    type = (int)m_watchMeta.Type
+                });
                 m_registered = true;
             }
         }
