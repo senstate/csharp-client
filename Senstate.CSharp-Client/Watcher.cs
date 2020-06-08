@@ -50,7 +50,7 @@ namespace Senstate.CSharp_Client
         {
             if (!m_registered)
             {
-                SenstateContext.SendEventData(SenstateEventConstants.AppWatcher, new { 
+                SenstateContext.SendEventData(SenstateEventConstants.AddWatcher, new { 
                     watchId = m_watchMeta.WatchId,
                     tag = m_watchMeta.Tag,
                     group = m_watchMeta.Group,

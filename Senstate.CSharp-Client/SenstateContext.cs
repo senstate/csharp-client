@@ -7,8 +7,8 @@ namespace Senstate.CSharp_Client
 
     public static class SenstateEventConstants
     {
-        public static string AppApp {get;set;} = "addApp";
-        public static string AppWatcher {get;set;} = "addWatcher";
+        public static string AddApp {get;set;} = "addApp";
+        public static string AddWatcher {get;set;} = "addWatcher";
         public static string InputEvent {get;set;} = "inputEvent";
         public static string LogEvent {get;set;} = "inputLogEvent";
         public static string ErrorEvent {get;set;} = "inputErrorEvent";
@@ -32,7 +32,7 @@ namespace Senstate.CSharp_Client
 
             WebSocketInstance.CreateSocket(targetEndpoint);
 
-            SendEventData(SenstateEventConstants.AppApp, new
+            SendEventData(SenstateEventConstants.AddApp, new
             {
                 appId = AppId,
                 name = AppName
@@ -41,7 +41,9 @@ namespace Senstate.CSharp_Client
 
         public static void SendEventData(string eventType, object eventData)
         {
-            WebSocketInstance.SendToSocket(CreateEventJson(eventType, eventData));
+            var eventToSend = CreateEventJson(eventType, eventData);
+
+            WebSocketInstance.SendToSocket(eventToSend);
         }
 
         public static string CreateEventJson(string eventType, object eventData)

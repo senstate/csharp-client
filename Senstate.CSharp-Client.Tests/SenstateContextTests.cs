@@ -1,6 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
-using Newtonsoft.Json;
 
 namespace Senstate.CSharp_Client.Tests
 {
@@ -21,20 +20,9 @@ namespace Senstate.CSharp_Client.Tests
             SenstateContext.RegisterApp();
 
             webSocketMock.Verify(w => w.SendToSocket(It.IsAny<string>()), Times.Once);
-            webSocketMock.Verify(w => w.SendToSocket(It.Is<string>(s => s.Contains(SenstateEventConstants.AppApp))), Times.Once);
+            webSocketMock.Verify(w => w.SendToSocket(It.Is<string>(s => s.Contains(SenstateEventConstants.AddApp))), Times.Once);
             webSocketMock.Verify(w => w.SendToSocket(It.Is<string>(s => s.Contains(SenstateContext.AppId))), Times.Once);
             webSocketMock.Verify(w => w.SendToSocket(It.Is<string>(s => s.Contains(SenstateContext.AppName))), Times.Once);
-        }
-    }
-
-    public class DummySerializer : ISenstateJson
-    {
-        public string ConvertToString(object data)
-        {
-            return JsonConvert.SerializeObject(data, new JsonSerializerSettings
-            {
-                NullValueHandling = NullValueHandling.Ignore
-            });
         }
     }
 }
