@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using Newtonsoft.Json;
+using System.Text.RegularExpressions;
 
 namespace Senstate.CSharp_Client.Tests
 {
@@ -39,6 +40,37 @@ namespace Senstate.CSharp_Client.Tests
 
 
             webSocketMock.Verify(w => w.SendToSocket(It.Is<string>(s => s.Contains("Uh-Oh Warning, mind me"))), Times.Once);
+        }
+
+        [TestMethod]
+        public void Sends_InfoLogEvent_With_Data()
+        {
+            var webSocketMock = TestContext.RegisterApp();
+
+            var myCustomObject = new
+            {
+                life = 42,
+                sub = new
+                {
+                    just = "a string"
+                }
+            };
+
+            var myCustomObjectJson = SenstateContext.SerializerInstance.ConvertToString(myCustomObject);
+
+            Logger.SendLog(LoggerType.Info, "Stuff", myCustomObjectJson);
+
+            var espapedJson = myCustomObjectJson.Replace("\"", "\\\"");
+
+            webSocketMock.Verify(w => w.SendToSocket(It.IsAny<string>()), Times.Exactly(2));
+            webSocketMock.Verify(w => w.SendToSocket(It.Is<string>(s => s.Contains(SenstateEventConstants.AddApp))), Times.Once);
+            webSocketMock.Verify(w => w.SendToSocket(It.Is<string>(s => s.Contains(SenstateEventConstants.LogEvent))), Times.Once);
+
+            webSocketMock.Verify(w => w.SendToSocket(It.Is<string>(s => s.Contains($"\"logLevel\":{(int)LoggerType.Info}"))), Times.Once);
+
+
+            webSocketMock.Verify(w => w.SendToSocket(It.Is<string>(s => s.Contains("Stuff"))), Times.Once);
+            webSocketMock.Verify(w => w.SendToSocket(It.Is<string>(s => s.Contains(espapedJson))), Times.Once);
         }
     }
 }

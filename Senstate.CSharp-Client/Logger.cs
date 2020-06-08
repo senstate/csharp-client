@@ -17,11 +17,12 @@
     /// </summary>
     public class Logger
     {
-        public static void SendLog(LoggerType logLevel, string log)
+        public static void SendLog(LoggerType logLevel, string log, object data = null)
         {
             SenstateContext.SendEventData(SenstateEventConstants.LogEvent, new { 
                log,
-               logLevel
+               logLevel,
+                data
             });
         }
     }

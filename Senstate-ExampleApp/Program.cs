@@ -60,18 +60,21 @@ namespace Senstate_ExampleApp
                 Thread.Sleep(500);
             stringWatcher.SendData($"This an example Text {i}");
                 numberWatcher.SendData(i);
-                Logger.SendLog(LoggerType.Debug, $"Debug {i}");
-                Logger.SendLog(LoggerType.Info, $"Info {i}");
 
-
-                objectWatcher.SendData(new
+                var someObject = new
                 {
                     example = true,
                     sub = new
                     {
                         data = i
                     }
-                });
+                };
+
+                Logger.SendLog(LoggerType.Debug, $"Debug {i}", someObject);
+                Logger.SendLog(LoggerType.Info, $"Info {i}");
+
+
+                objectWatcher.SendData(someObject);
             }
 
 
