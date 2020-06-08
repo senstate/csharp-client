@@ -54,9 +54,9 @@ namespace Senstate_ExampleApp
                 ErrorSender.Send(ex);
             }
 
-            for (var i = 0; i<100; i++) {
+            for (var i = 0; i<10000; i++) {
 
-                Thread.Sleep(1000);
+                Thread.Sleep(500);
             stringWatcher.SendData($"This an example Text {i}");
                 numberWatcher.SendData(i);
                 Logger.SendLog(LoggerType.Debug, $"Debug {i}");
