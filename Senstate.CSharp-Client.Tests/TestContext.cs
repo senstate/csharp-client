@@ -1,4 +1,5 @@
-﻿using Moq;
+using Moq;
+using Senstate.NetStandard;
 
 namespace Senstate.CSharp_Client.Tests
 {
@@ -9,12 +10,11 @@ namespace Senstate.CSharp_Client.Tests
             var webSocketMock = new Mock<ISenstateWebSocket>();
 
             SenstateContext.AppId = "1234";
-            SenstateContext.AppName = "Some Name";
 
-            SenstateContext.SerializerInstance = new DummySerializer();
+            SenstateContext.SerializerInstance = new NetStandardJsonNetImplementation();
             SenstateContext.WebSocketInstance = webSocketMock.Object;
 
-            SenstateContext.RegisterApp();
+            SenstateContext.RegisterApp("Some Name");
 
             return webSocketMock;
         }

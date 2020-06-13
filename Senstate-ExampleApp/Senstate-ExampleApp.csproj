@@ -13,6 +13,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Senstate.CSharp-Client.Tests\Senstate.CSharp-Client.Tests.csproj" />
     <ProjectReference Include="..\Senstate.CSharp-Client\Senstate.CSharp-Client.csproj" />
+    <ProjectReference Include="..\Senstate.NetStandard\Senstate.NetStandard.csproj" />
   </ItemGroup>
 
 </Project>

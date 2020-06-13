@@ -1,4 +1,4 @@
-﻿namespace Senstate.CSharp_Client
+namespace Senstate.CSharp_Client
 {
     public enum LoggerType
     {
@@ -26,5 +26,4 @@
             });
         }
     }
-
 }

@@ -1,134 +1,83 @@
-﻿using Newtonsoft.Json;
 using Senstate.CSharp_Client;
-using Senstate.CSharp_Client.Tests;
+using Senstate.NetStandard;
 using System;
-using System.Linq;
-using System.Net.WebSockets;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 
 namespace Senstate_ExampleApp
 {
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            SenstateContext.AppName = "C# Console Log";
-            SenstateContext.SerializerInstance = new DummySerializer();
-            SenstateContext.WebSocketInstance = new DotNetWebSocket();
-            SenstateContext.RegisterApp();
+   class Program
+   {
+      static void Main(string[] args)
+      {
+         var webSocket = new NetStandardWebSocketImplementation();
+         webSocket.ExceptionThrown += (sender, e) =>
+         {
+            throw e.Exception;
+         };
 
-            var stringWatcher = new Watcher(
-                new WatcherMeta
-                {
-                    Tag = "Some Label",
-                    Type = WatcherType.String,
-                    Group = "Example Group 1"
-                }
-                );
+         SenstateContext.SerializerInstance = new NetStandardJsonNetImplementation();
+         SenstateContext.WebSocketInstance = webSocket;
+         SenstateContext.RegisterApp("C# Console Log");
 
-            var numberWatcher = new Watcher(
-            new WatcherMeta
-            {
-                Tag = "Number",
-                Type = WatcherType.Number,
+         var stringWatcher = new Watcher(
+             new WatcherMeta
+             {
+                Tag = "Some Label",
+                Type = WatcherType.String,
                 Group = "Example Group 1"
-            }
-      );
+             }
+             );
 
-            var objectWatcher = new Watcher(
-        new WatcherMeta
-        {
-            Tag = "Object",
-            Type = WatcherType.Json,
-            Group = "Special"
-        }
-  );
+         var numberWatcher = new Watcher(
+                  new WatcherMeta
+                  {
+                     Tag = "Number",
+                     Type = WatcherType.Number,
+                     Group = "Example Group 1"
+                  }
+            );
 
-            try
-            {
-                throw new NullReferenceException();
-            }
-            catch(Exception ex)
-            {
-                ErrorSender.Send(ex);
-            }
+         var objectWatcher = new Watcher(
+              new WatcherMeta
+              {
+                 Tag = "Object",
+                 Type = WatcherType.Json,
+                 Group = "Special"
+              }
+         );
 
-            for (var i = 0; i<10000; i++) {
+         try
+         {
+            throw new NullReferenceException();
+         }
+         catch (Exception ex)
+         {
+            ErrorSender.Send(ex);
+         }
 
-                Thread.Sleep(500);
+         for (var i = 0; i < 10000; i++)
+         {
+
+            Thread.Sleep(500);
             stringWatcher.SendData($"This an example Text {i}");
-                numberWatcher.SendData(i);
+            numberWatcher.SendData(i);
 
-                var someObject = new
-                {
-                    example = true,
-                    sub = new
-                    {
-                        data = i
-                    }
-                };
-
-                Logger.SendLog(LoggerType.Debug, $"Debug {i}", someObject);
-                Logger.SendLog(LoggerType.Info, $"Info {i}");
-
-
-                objectWatcher.SendData(someObject);
-            }
-
-
-            Console.ReadKey();
-        }
-
-     
-
-        private class DummyWebSocket : ISenstateWebSocket
-        {
-            public void CreateSocket(Uri targetEndpoint)
+            var someObject = new
             {
-                Console.WriteLine("Created a Dummy Socket");
-            }
+               example = true,
+               sub = new
+               {
+                  data = i
+               }
+            };
 
-            public void SendToSocket(string jsonData)
-            {
-                Console.WriteLine($"{jsonData}");
-            }
-        }
+            Logger.SendLog(LoggerType.Debug, $"Debug {i}", someObject);
+            Logger.SendLog(LoggerType.Info, $"Info {i}");
 
+            objectWatcher.SendData(someObject);
+         }
 
-        private class DotNetWebSocket : ISenstateWebSocket
-        {
-            ClientWebSocket m_socket = new ClientWebSocket();
-            private Task connectionTask = null;
-
-            public void CreateSocket(Uri targetEndpoint)
-            {
-                CancellationTokenSource source = new CancellationTokenSource();
-                CancellationToken token = source.Token;
-
-                connectionTask = m_socket.ConnectAsync(targetEndpoint, token);
-            }
-
-            public async void SendToSocket(string jsonData)
-            {
-                if (!connectionTask.IsCompleted)
-                {
-                    await connectionTask;
-                }
-
-                if (m_socket.State == WebSocketState.Open)
-                {
-                    CancellationTokenSource source = new CancellationTokenSource();
-                    CancellationToken token = source.Token;
-
-                    var utf8Array = Encoding.UTF8.GetBytes(jsonData).AsMemory();
-
-
-                    Console.WriteLine($"Sending to Hub {jsonData}");
-                    await m_socket.SendAsync(utf8Array, WebSocketMessageType.Text, true, token);
-                }
-            }
-        }
-    }
+         Console.ReadKey();
+      }
+   }
 }
