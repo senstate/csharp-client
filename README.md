@@ -1,4 +1,4 @@
-# :tada: Senstate C#-Client 👋
+#  Senstate C#-Client 👋
 
 
 ## Install C# Client
