@@ -1,16 +1,15 @@
 #  Senstate C#-Client 👋
 
-
 ## Install C# Client
+
+| Libary | Install              |                   |
+| -------- | ----------------- | ----------------------- |
+| Shared Logic | `Install-Package Senstate.CSharp-Client -Version 0.1.0` | [![Nuget Version][NugetVersionImage] <br /> ![Nuget Downloads][NugetDownloadImage]][NugetLink] |
+| .Net Standard 2 Json/WebSocket Implementations | `Install-Package Senstate.NetStandard -Version 0.1.0` | [![Nuget Version][NetStandardNugetVersionImage] <br /> ![Nuget Downloads][NetStandardNugetDownloadImage]][NetStandardNugetLink] |
 
 Supported Platforms:
 - NetStandard
 - Blazor Server/WASM (Demo soon)
-
-```
-Install-Package Senstate.CSharp-Client -Version 0.1.0
-Install-Package Senstate.NetStandard -Version 0.1.0
-```
 
 or Visit: [Releases](https://github.com/senstate/csharp-client/releases) to download the Client & NetStandard Dlls.
 
@@ -23,7 +22,7 @@ Reference them as usual
    var webSocket = new NetStandardWebSocketImplementation();
    webSocket.ExceptionThrown += (sender, e) =>  // Optional if you want to catch Connection issues
    {
-      throw e.Exception;  
+      throw e.Exception;
    };
 
    SenstateContext.SerializerInstance = new NetStandardJsonNetImplementation();
@@ -42,7 +41,7 @@ Create your Watcher:
    var stringWatcher = new Watcher(
       new WatcherMeta
       {
-         Tag = "Some Label", 
+         Tag = "Some Label",
          Type = WatcherType.String, // or Number / Json
          Group = "Example Group 1"  // optional: if you want to group watchers
       }
@@ -113,3 +112,14 @@ Possible Log-Levels:
 Give a ⭐️ if this project helped you!
 
 If you have features / ideas, open an issue :)
+
+
+
+[NugetVersionImage]: https://img.shields.io/nuget/v/Senstate.CSharp-Client
+[NugetDownloadImage]: https://img.shields.io/nuget/dt/Senstate.CSharp-Client
+[NugetLink]: https://www.nuget.org/packages/Senstate.CSharp-Client/
+
+
+[NetStandardNugetVersionImage]: https://img.shields.io/nuget/v/Senstate.NetStandard
+[NetStandardNugetDownloadImage]: https://img.shields.io/nuget/dt/Senstate.NetStandard
+[NetStandardNugetLink]: https://www.nuget.org/packages/Senstate.NetStandard/
