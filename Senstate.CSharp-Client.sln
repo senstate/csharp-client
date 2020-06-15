@@ -9,11 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Senstate-ExampleApp", "Sens
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Senstate.CSharp-Client.Tests", "Senstate.CSharp-Client.Tests\Senstate.CSharp-Client.Tests.csproj", "{0C835DA8-5521-4D16-8F5C-00EF94DFFE82}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorAppServerSide", "BlazorAppServerSide\BlazorAppServerSide.csproj", "{19C726F7-9950-4809-9635-5E242BC6541D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorWASM", "BlazorWASM\BlazorWASM.csproj", "{391B0753-FC37-4683-A4B9-39CC931B8F7E}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Senstate.NetStandard", "Senstate.NetStandard\Senstate.NetStandard.csproj", "{743F3C4A-7FFA-476F-8223-9F8E89ED518F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Senstate.NetStandard", "Senstate.NetStandard\Senstate.NetStandard.csproj", "{743F3C4A-7FFA-476F-8223-9F8E89ED518F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{5955506B-E0CD-4F4D-A174-37B27018DC83}"
 	ProjectSection(SolutionItems) = preProject
@@ -40,14 +36,6 @@ Global
 		{0C835DA8-5521-4D16-8F5C-00EF94DFFE82}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0C835DA8-5521-4D16-8F5C-00EF94DFFE82}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0C835DA8-5521-4D16-8F5C-00EF94DFFE82}.Release|Any CPU.Build.0 = Release|Any CPU
-		{19C726F7-9950-4809-9635-5E242BC6541D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{19C726F7-9950-4809-9635-5E242BC6541D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{19C726F7-9950-4809-9635-5E242BC6541D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{19C726F7-9950-4809-9635-5E242BC6541D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{391B0753-FC37-4683-A4B9-39CC931B8F7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{391B0753-FC37-4683-A4B9-39CC931B8F7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{391B0753-FC37-4683-A4B9-39CC931B8F7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{391B0753-FC37-4683-A4B9-39CC931B8F7E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{743F3C4A-7FFA-476F-8223-9F8E89ED518F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{743F3C4A-7FFA-476F-8223-9F8E89ED518F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{743F3C4A-7FFA-476F-8223-9F8E89ED518F}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -7,7 +7,12 @@ Supported Platforms:
 - NetStandard
 - Blazor Server/WASM (Demo soon)
 
-Visit: [Releases](https://github.com/senstate/csharp-client/releases) to download the Client & NetStandard Dlls.
+```
+Install-Package Senstate.CSharp-Client -Version 0.1.0
+Install-Package Senstate.NetStandard -Version 0.1.0
+```
+
+or Visit: [Releases](https://github.com/senstate/csharp-client/releases) to download the Client & NetStandard Dlls.
 
 Reference them as usual
 

@@ -5,6 +5,9 @@
     <RootNamespace>Senstate.CSharp_Client</RootNamespace>
     <Version>0.1.0</Version>
     <Company />
+     <PackageDescription>CSharpClient Logic</PackageDescription>
+     <RepositoryUrl>https://github.com/senstate/csharp-client</RepositoryUrl>
+     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
 </Project>
