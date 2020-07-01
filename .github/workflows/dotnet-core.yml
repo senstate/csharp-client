@@ -1,0 +1,32 @@
+name: .NET Core
+
+on:
+  push:
+    branches: [ master ]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@master
+
+      - name: Setup .NET environment
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '3.1.102'
+          source-url: https://nuget.pkg.github.com/senstate/index.json
+        env:
+          NUGET_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Build project
+        run: dotnet build -c Release -p Senstate.CSharp-Client
+
+      - name: Generate a NuGet package
+        run: dotnet pack --no-build -c Release -o -p Senstate.CSharp-Client
+
+      - name: Push to GitHub package registry
+        run: dotnet nuget push *.nupkg
